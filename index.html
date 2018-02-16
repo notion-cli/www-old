@@ -117,6 +117,9 @@
 
         h1, h2, h3, h4, h5, h6 {
             color: #3f2a14;
+        }
+
+        h1, h2, h3, h4, h5, h6, code {
             font-family: Inconsolata, Consolas, Menlo Park, Monaco, Courier, monospace;
         }
 
@@ -161,13 +164,23 @@
                 <li>extensibility for custom development environments;</li>
                 <li>full yarn support;</li>
                 <li>automatic, per-project version switching;</li>
-                <li>and first-class support for Windows.</li>
+                <li>support for all shells and all major OSes&mdash;including <code>cmd.exe</code> and PowerShell!</li>
             </ul>
         </p>
 
         <h1>notion install</h1>
         <p>
-            Notion is still under development. See the <a href="https://github.com/notion-cli/notion">project repository</a> for installation instructions.
+            <strong>Notion is still under development.</strong> See the <a href="https://github.com/notion-cli/notion">project repository</a> for installation instructions.
+        </p>
+
+        <h1>notion use</h1>
+        <p>
+            <strong>If you know how to use Node, you already know how to use Notion.</strong> Notion works by making all of your Node executables (including <code>node</code>, <code>npm</code>, <code>yarn</code>, and package binaries) into intelligent shims that switch to the right version for each project. So using the right version of Node for your project is just a matter of typing <code>node</code>&mdash;even if that version isn&rsquo;t yet installed on your machine.
+        </p>
+
+        <h1>notion admin</h1>
+        <p>
+        Do you use Node with a project that needs to customize the development environment? Are you using it at a company that stores its development tools on custom servers? Notion allows complete customization of its pipeline so you can adapt it to your team&rsquo;s or company&rsquo;s needs.
         </p>
     </main>
 
