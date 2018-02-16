@@ -28,11 +28,13 @@
 
         #hero {
             width: 100%;
-            background-image: url("catalog.jpg");
-            background-size: 100% auto;
+            background-image: url("catalog-darkened.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             margin: 0;
-            padding: 0;
-            height: 314px;
+            padding: 0 0 24.922% 0; /* the aspect ratio of the hero image is 24.922% */
+            height: 0;
             border-bottom: 1px solid tan;
         }
 
@@ -41,7 +43,7 @@
         }
 
         #herowords {
-            padding-top: 130px;
+            padding-top: 10%; /*130px;*/
         }
 
         #herowords, main, footer {
