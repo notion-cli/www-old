@@ -1,0 +1,108 @@
+<!doctype html>
+<head>
+    <title>Notion: The hassle-free Node.js manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="hero">
+        <div id="herowords">
+            <div id="wordmark">Notion</div>
+            <div id="slogan">the hassle-free Node.js manager</div>
+        </div>
+    </div>
+
+    <main>
+        <h1>Introduction</h1>
+        <p>
+            Welcome to Notion!  Notion aims to supply all of the toolchain-managing needs for you and your projects.  This includes managing the toolchain configuration for your project as well as automatically fetching and installing configured tool versions.
+        </p>
+
+        <h2>What&rsquo;s a tool?  What&rsquo;s a tool<em>chain</em>?</h2>
+        <p>
+            A "tool", in Notion parlance, is Node, Yarn, npm, npx, or any binary from an installed Yarn or npm package.
+        </p>
+
+        <p>
+            A toolchain is the set of tools/versions you&rsquo;re currently using.  Notion is capable of managing these as a set, ensuring that a tool installed in one toolchain doesn&rsquo;t "bleed" into another where it isn&rsquo;t installed.
+        </p>
+
+        <p>
+            There are two types of toolchains: user toolchains and project toolchains.  The user toolchain is active when outside of a project or "unpinned" projects (projects without a toolchain configured).  Project toolchains are used automatically inside of "pinned" projects (projects <em>with</em> a toolchain configured).
+        </p>
+
+        <p>
+            When a project is pinned to a particular version of a tool (say, Node itself), Notion is aware of it and automatically substitutes that version for the global version or the one in your user toolchain, downloading it first if necessary.  This means that any time you&rsquo;re inside your project directory (or a subdirectory), the pinned version is used without needing to issue additional commands.
+        </p>
+
+        <h1>Workflow</h1>
+        <p>
+            Once you have Notion <a href="https://github.com/notion-cli/notion#readme">installed</a>, you&rsquo;ll want to set up your user toolchain.  At the very least, you&rsquo;ll want to install a version of Node to run.  You can either instruct Notion to install a particular version or to just grab the latest:
+        </p>
+
+        <pre class="code"><code>$ notion install node latest  # or `notion install node 8`, etc.</code></pre>
+
+        <p>
+            This is also a good time to fetch other versions of Node which you use frequently and to install Yarn, if you like:
+        </p>
+
+        <pre class="code"><code>$ notion fetch node 6&#xA;$ notion install yarn latest</code></pre>
+
+        <h2>Installing tools into the user toolchain</h2>
+        <p>
+            You&rsquo;ve already had a taste of this above, but let&rsquo;s dig into it in a little more detail.  In Notion, a tool is <em>fetched</em> when it&rsquo;s available for install via Notion&rsquo;s cache and <em>installed</em> when it&rsquo;s an active part of the user toolchain.  This means that the command for switching from one version of a tool to another is <code>notion install</code>.  The user toolchain is a good place to install tools which you&rsquo;d otherwise install globally via Yarn or npm, such as <a href="https://www.npmjs.com/package/yo">Yeoman</a> or <a href="https://www.npmjs.com/package/ember-cli">Ember CLI</a>.
+        </p>
+
+        <pre class="code"><code>$ notion install node 10&#xA;$ notion install ember-cli latest</code></pre>
+
+        <h2>Pinning tools in a project toolchain</h2>
+        <p>
+            Individual projects can be configured with their own toolchains with <code>notion use</code>.  This allows you to switch to a project-specific set of tool versions simply by changing directory into your project.  It also makes locally-installed binaries available on your <code>PATH</code>, so you don&rsquo;t need to call them with <code>./node_modules/.bin</code>.
+        </p>
+
+        <pre class="code"><code>$ cd ~/working/foo$ notion use node 8&#xA;$ mocha</code></pre>
+
+        <h1>Commands</h1>
+
+        <h2><code>notion current</code></h2>
+
+        <p>
+            Displays the active version of Node, plus the version of Node in the user toolchain if a project toolchain is active.
+        </p>
+
+        <pre class="code"><code>$ notion current&#xA;project: v8.11.4 (active)&#xA;user: v10.9.0</code></pre>
+
+        <h2><code>notion fetch &lt;tool&gt; &lt;version&gt;</code></h2>
+        <p>
+            Downloads the matching version of <em>tool</em> and makes it available via Notion&rsquo;s local cache.
+        </p>
+
+        <pre class="code"><code>$ ls ~/.notion/cache/yarn&#xA;yarn-v1.7.0.tar.gz&#xA;$ notion fetch yarn 1.9&#xA;$ ls ~/.notion/cache/yarn&#xA;yarn-v1.7.0.tar.gz	yarn-v1.9.4.tar.gz</code></pre>
+
+        <h2><code>notion install &lt;tool&gt; &lt;version&gt;</code></h2>
+        <p>
+            Installs the matching version of <em>tool</em> into the user toolchain.  (If no matching version has been fetched, one will be fetched automatically.)  This changes the effective version of that tool when outside a project.
+        </p>
+
+        <pre class="code"><code>$ notion current&#xA;user: v8.11.4 (active)&#xA;$ notion install node 10&#xA;$ notion current&#xA;user: v10.9.0 (active)</code></pre>
+
+        <h2><code>notion use &lt;tool&gt; &lt;version&gt;</code></h2>
+        <p>
+            Configures a project to use the matching version of <em>tool</em> as part of its toolchain.  (If no matching version has been fetched, one will be fetched automatically when <em>tool</em> is executed.)  This changes the effective version of that tool when inside the project.
+        </p>
+
+        <pre class="code"><code>$ notion current&#xA;user: v10.9.0 (active)&#xA;$ notion use node 8&#xA;$ notion current&#xA;project: v8.11.4 (active)&#xA;user: v10.9.0&#xA;$ grep -A 2 toolchain package.json&#xA;  "toolchain": {&#xA;    "node": "8.11.4"&#xA;  }</code></pre>
+
+        <h2><code>notion shim &lt;tool&gt;</code></h2>
+        <p>
+            Manages the shims for tools installed via Yarn and npm.  (This is primarily a diagnostic command; you shouldn&rsquo;t have to manage shims yourself.)
+        </p>
+
+        <pre class="code"><code>$ which ember&#xA;$ notion shim ember&#xA;$ which ember&#xA;/Users/bblank/.notion/bin/ember&#xA;$ notion shim ember --delete&#xA;$ which ember</code></pre>
+    </main>
+
+    <footer>
+        copyright &copy; 2018, the Notion contributors &bullet;
+        image credits: &nbsp;
+        <a class="unsplash" href="https://unsplash.com/@sanwaldeen?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge" target="_blank" rel="noopener noreferrer" title="Download free do whatever you want high-resolution photos from Sanwal Deen"><span style="display:inline-block;padding:2px 3px;"><svg xmlns="http://www.w3.org/2000/svg" style="height:12px;width:auto;position:relative;vertical-align:middle;top:-1px;fill:white;" viewBox="0 0 32 32"><title>unsplash-logo</title><path d="M20.8 18.1c0 2.7-2.2 4.8-4.8 4.8s-4.8-2.1-4.8-4.8c0-2.7 2.2-4.8 4.8-4.8 2.7.1 4.8 2.2 4.8 4.8zm11.2-7.4v14.9c0 2.3-1.9 4.3-4.3 4.3h-23.4c-2.4 0-4.3-1.9-4.3-4.3v-15c0-2.3 1.9-4.3 4.3-4.3h3.7l.8-2.3c.4-1.1 1.7-2 2.9-2h8.6c1.2 0 2.5.9 2.9 2l.8 2.4h3.7c2.4 0 4.3 1.9 4.3 4.3zm-8.6 7.5c0-4.1-3.3-7.5-7.5-7.5-4.1 0-7.5 3.4-7.5 7.5s3.3 7.5 7.5 7.5c4.2-.1 7.5-3.4 7.5-7.5z"></path></svg></span><span style="display:inline-block;padding:2px 3px;">Sanwal Deen</span></a>
+    </footer>
+</body>
