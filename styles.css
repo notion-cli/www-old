@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i|Oswald|Inconsolata');
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+a, a:active {
+    color: #3f2a14;
+}
+
+a:visited {
+    color: #654321;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: beige;
+    color: #654321;
+    font-family: Cardo, Serif;
+}
+
+code {
+    background: #e3d4b4;
+}
+
+p {
+    font-size: 18px;
+    padding-bottom: 1em;
+}
+
+pre.code {
+    border-left: .25em solid tan;
+    margin: 1em 2em;
+}
+
+pre code {
+  display: block;
+  margin-left: .25em;
+  padding: .5em;
+}
+
+#hero {
+    width: 100%;
+    background-color: #3f2a14;
+    background-image: url("catalog-darkened.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    /* the aspect ratio of the hero image is (319 / 1280) = 0.24922 */
+    padding: 0 0 24.922% 0;
+    height: 0;
+    border-bottom: 1px solid tan;
+}
+
+#wordmark, #slogan {
+    color: beige;
+}
+
+#wordmark {
+    font-family: Oswald, Serif;
+}
+
+#slogan {
+    font-family: Cardo, Serif;
+}
+
+@media screen and (min-width: 1024px) {
+    #wordmark  { font-size: 400%; }
+    #slogan    { font-size: 150%; }
+    #herowords { padding-top: 10%; }
+    #herowords, main, footer {
+        padding-left: 165px;
+        padding-right: 165px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+    #wordmark  { font-size: 300%; }
+    #slogan    { font-size: 150%; }
+    #herowords { padding-top: 9%; }
+    #herowords, main, footer {
+        padding-left: 165px;
+        padding-right: 165px;
+    }
+}
+
+@media screen and (max-width: 800px) and (min-width: 500px) {
+    #wordmark  { font-size: 300%; }
+    #slogan    { display: none; }
+    #herowords { padding-top: 7%; }
+    #herowords, main, footer {
+        padding-left: 125px;
+        padding-right: 125px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #wordmark  { display: none; }
+    #slogan    { display: none; }
+    #herowords { display: none; }
+    #herowords, main, footer {
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+}
+
+#slogan::before {
+    content: "\219D\0000a0 "
+}
+
+main {
+    padding-top: 2em;
+    padding-bottom: 3em;
+}
+
+footer {
+    padding-bottom: 5em;
+    text-align: right;
+    font-size: 80%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #3f2a14;
+}
+
+code {
+    font-family: Inconsolata, Consolas, Menlo Park, Monaco, Courier, monospace;
+}
+
+.unsplash {
+    background-color: #3f2a14;
+    text-decoration: none;
+    padding: 4px 6px;
+    font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Helvetica Neue', Helvetica, Ubuntu, Roboto, Noto, 'Segoe UI', Arial, sans-serif;
+    font-size: 80%;
+    font-weight: bold;
+    line-height: 1.2;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.unsplash, .unsplash:visited, .unsplash:active, .unsplash:hover {
+    color: beige;
+}
