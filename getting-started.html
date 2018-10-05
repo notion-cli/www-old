@@ -19,15 +19,15 @@
 
         <h2>What&rsquo;s a tool?  What&rsquo;s a tool<em>chain</em>?</h2>
         <p>
-            A "tool", in Notion parlance, is Node, Yarn, npm, npx, or any binary from an installed Yarn or npm package.
+            A &ldquo;tool&rdquo;, in Notion parlance, is Node, a package manager (npm or Yarn), npx, or any binary from an installed JavaScript package.
         </p>
 
         <p>
-            A toolchain is the set of tools/versions you&rsquo;re currently using.  Notion is capable of managing these as a set, ensuring that a tool installed in one toolchain doesn&rsquo;t "bleed" into another where it isn&rsquo;t installed.
+            A toolchain is the set of tools/versions you&rsquo;re currently using.  Notion is capable of managing these as a set, ensuring that a tool installed in one toolchain doesn&rsquo;t &ldquo;bleed&rdquo; into another where it isn&rsquo;t installed.
         </p>
 
         <p>
-            There are two types of toolchains: user toolchains and project toolchains.  The user toolchain is active when outside of a project or "unpinned" projects (projects without a toolchain configured).  Project toolchains are used automatically inside of "pinned" projects (projects <em>with</em> a toolchain configured).
+            There are two types of toolchains: user toolchains and project toolchains.  The user toolchain is active when outside of a project or &ldquo;unpinned&rdquo; projects (projects without a toolchain configured).  Project toolchains are used automatically inside of &ldquo;pinned&rdquo; projects (projects <em>with</em> a toolchain configured).
         </p>
 
         <p>
@@ -49,7 +49,7 @@
 
         <h2>Installing tools into the user toolchain</h2>
         <p>
-            You&rsquo;ve already had a taste of this above, but let&rsquo;s dig into it in a little more detail.  In Notion, a tool is <em>fetched</em> when it&rsquo;s available for install via Notion&rsquo;s cache and <em>installed</em> when it&rsquo;s an active part of the user toolchain.  This means that the command for switching from one version of a tool to another is <code>notion install</code>.  The user toolchain is a good place to install tools which you&rsquo;d otherwise install globally via Yarn or npm, such as <a href="https://www.npmjs.com/package/yo">Yeoman</a> or <a href="https://www.npmjs.com/package/ember-cli">Ember CLI</a>.
+            You&rsquo;ve already had a taste of this above, but let&rsquo;s dig into it in a little more detail.  In Notion, a tool is <em>fetched</em> when it&rsquo;s available for install via Notion&rsquo;s cache and <em>installed</em> when it&rsquo;s an active part of the user toolchain.  This means that the command for switching from one version of a tool to another is <code>notion install</code>.  The user toolchain is a good place to install tools which you&rsquo;d otherwise install globally via npm or Yarn, such as <a href="https://www.npmjs.com/package/yo">Yeoman</a> or <a href="https://www.npmjs.com/package/ember-cli">Ember CLI</a>.
         </p>
 
         <pre class="code"><code>$ notion install node 10&#xA;$ notion install ember-cli latest</code></pre>
@@ -94,7 +94,7 @@
 
         <h2><code>notion shim &lt;tool&gt;</code></h2>
         <p>
-            Manages the shims for tools installed via Yarn and npm.  (This is primarily a diagnostic command; you shouldn&rsquo;t have to manage shims yourself.)
+            Manages the shims for tools.  (This is primarily a diagnostic command; you shouldn&rsquo;t have to manage shims yourself.)
         </p>
 
         <pre class="code"><code>$ which ember&#xA;$ notion shim ember&#xA;$ which ember&#xA;/Users/bblank/.notion/bin/ember&#xA;$ notion shim ember --delete&#xA;$ which ember</code></pre>
