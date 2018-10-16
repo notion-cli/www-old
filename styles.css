@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i|Oswald|Inconsolata');
+@import url('https://fonts.googleapis.com/css?family=Cardo:400,400i,700|Oswald|Inconsolata');
 html {
     box-sizing: border-box;
     margin: 0;
@@ -151,6 +151,6 @@ code {
 }
 
 .note {
-    font-weight: bold;
+    font-weight: 700;
     color: #78b752;
 }
