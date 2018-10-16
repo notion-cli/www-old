@@ -149,3 +149,8 @@ code {
 .unsplash, .unsplash:visited, .unsplash:active, .unsplash:hover {
     color: beige;
 }
+
+.note {
+    font-weight: bold;
+}
+
