@@ -60,10 +60,10 @@
 
         <h2>Pinning tools in a project toolchain</h2>
         <p>
-            Individual projects can be configured with their own toolchains with <code>notion use</code>.  This allows you to switch to a project-specific set of tool versions simply by changing directory into your project.  It also makes locally-installed binaries available on your <code>PATH</code>, so you don&rsquo;t need to call them with <code>./node_modules/.bin</code>.
+            Individual projects can be configured with their own toolchains with <code>notion pin</code>.  This allows you to switch to a project-specific set of tool versions simply by changing directory into your project.  It also makes locally-installed binaries available on your <code>PATH</code>, so you don&rsquo;t need to call them with <code>./node_modules/.bin</code>.
         </p>
 
-        <pre class="code"><code>$ cd ~/working/foo$ notion use node 8&#xA;$ mocha</code></pre>
+        <pre class="code"><code>$ cd ~/working/foo$ notion pin node 8&#xA;$ mocha</code></pre>
 
         <h1>Commands</h1>
 
@@ -89,7 +89,7 @@
 
         <pre class="code"><code>$ notion current&#xA;user: v8.11.4 (active)&#xA;$ notion install node 10&#xA;$ notion current&#xA;user: v10.9.0 (active)</code></pre>
 
-        <h2><code>notion use &lt;tool&gt; &lt;version&gt;</code></h2>
+        <h2><code>notion pin &lt;tool&gt; &lt;version&gt;</code></h2>
         <p>
             Configures a project to use the matching version of <em>tool</em> as part of its toolchain.  (If no matching version has been fetched, one will be fetched automatically when <em>tool</em> is executed.)  This changes the effective version of that tool when inside the project.
         </p>
